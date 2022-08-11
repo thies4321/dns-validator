@@ -3,6 +3,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$enum = \DnsValidator\Enum\ResourceRecordType::from();
+$entity = new \DnsValidator\Entity\ResourceRecord('example.com', 60, 'A', '127.0.0.1');
 
-print_r($enum->getReference());
+print_r($entity);

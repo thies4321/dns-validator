@@ -1,5 +1,5 @@
 {
-    "name": "thies4321/dns-validator",
+    "name": "thies/dns-validator",
     "type": "standard",
     "description": "Validator for zone and DNS.",
     "homepage": "https://github.com/thies4321/dns-validator",
