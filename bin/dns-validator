@@ -5,4 +5,5 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $entity = new \DnsValidator\Entity\ResourceRecord('example.com', 60, 'A', '127.0.0.1');
 
-print_r($entity);
+$validator = new \DnsValidator\Validator\ResourceRecordValidator();
+$validator->validate($entity);
