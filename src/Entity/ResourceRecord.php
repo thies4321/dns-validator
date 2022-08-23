@@ -4,31 +4,28 @@ declare(strict_types=1);
 
 namespace DnsValidator\Entity;
 
-use DnsValidator\Enum\ResourceRecordType;
-use DnsValidator\Exception\InvalidResourceRecordType;
+use DnsValidator\Validator\ResourceRecord\ResourceRecordValidatorInterface;
 
 final class ResourceRecord
 {
     private string $name;
     private int $ttl;
-    private ResourceRecordType $type;
+    private string $type;
     private string $content;
+    private ResourceRecordValidatorInterface $validator;
 
-    /**
-     * @throws InvalidResourceRecordType
-     */
-    public function __construct(string $name, int $ttl, string $type, string $content)
-    {
-        $resourceRecordType = ResourceRecordType::tryFrom($type);
-
-        if (! $resourceRecordType instanceof ResourceRecordType) {
-            throw InvalidResourceRecordType::forType($type);
-        }
-
+    public function __construct(
+        string $name,
+        int $ttl,
+        string $type,
+        string $content,
+        ResourceRecordValidatorInterface $validator
+    ) {
         $this->name = $name;
         $this->ttl = $ttl;
-        $this->type = $resourceRecordType;
+        $this->type = $type;
         $this->content = $content;
+        $this->validator = $validator;
     }
 
     public function getName(): string
@@ -43,16 +40,16 @@ final class ResourceRecord
 
     public function getType(): string
     {
-        return $this->type->value;
-    }
-
-    public function getDefiningRfc(): string
-    {
-        return $this->type->getReference();
+        return $this->type;
     }
 
     public function getContent(): string
     {
         return $this->content;
+    }
+
+    public function validate(): void
+    {
+        $this->validator->validate($this);
     }
 }

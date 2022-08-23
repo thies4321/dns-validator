@@ -2,14 +2,26 @@
 
 declare(strict_types=1);
 
-namespace DnsValidator\Validator;
+namespace DnsValidator\Validator\ResourceRecord;
 
+use DnsValidator\Entity\ResourceRecord;
 use DnsValidator\Enum\ResourceRecordType;
 use DnsValidator\Exception\InvalidResourceRecordType;
 use DnsValidator\Exception\ResourceRecordTypeDoesNotMatch;
 
-abstract class AbstractValidator implements ValidatorInterface
+abstract class AbstractResourceRecordValidator implements ResourceRecordValidatorInterface
 {
+    /**
+     * @throws InvalidResourceRecordType
+     * @throws ResourceRecordTypeDoesNotMatch
+     */
+    public function validate(ResourceRecord $resourceRecord): void
+    {
+        $this->validateType($resourceRecord->getType());
+        $this->validateName($resourceRecord->getName());
+        $this->validateTtl($resourceRecord->getTtl());
+    }
+
     /**
      * @throws InvalidResourceRecordType
      * @throws ResourceRecordTypeDoesNotMatch

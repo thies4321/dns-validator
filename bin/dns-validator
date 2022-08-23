@@ -3,7 +3,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$entity = new \DnsValidator\Entity\ResourceRecord('sub.*.example.com.', 60, 'A', '127s.0.0.1');
+$factory = new \DnsValidator\Factory\ResourceRecordFactory();
+$record = $factory->create('test.nl', 60, 'A', '127.0.0.1');
 
-$validator = new \DnsValidator\Validator\ResourceRecordValidator();
-$validator->validate($entity);
+$record->validate();
