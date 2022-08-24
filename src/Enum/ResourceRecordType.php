@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace DnsValidator\Enum;
 
+use function sprintf;
+
 enum ResourceRecordType: string
 {
     case A = 'A'; // 1

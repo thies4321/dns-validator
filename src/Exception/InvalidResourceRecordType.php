@@ -6,6 +6,8 @@ namespace DnsValidator\Exception;
 
 use Exception;
 
+use function sprintf;
+
 final class InvalidResourceRecordType extends Exception
 {
     public static function forType(string $type): self

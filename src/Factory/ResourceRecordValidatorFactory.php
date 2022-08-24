@@ -12,6 +12,9 @@ use function sprintf;
 
 final class ResourceRecordValidatorFactory
 {
+    /**
+     * @throws ValidatorDoesNotExist
+     */
     public function create(string $type): ResourceRecordValidatorInterface
     {
         $class = sprintf('DnsValidator\Validator\ResourceRecord\%s', $type);

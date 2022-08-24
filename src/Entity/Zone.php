@@ -49,5 +49,7 @@ final class Zone
         foreach ($this->getResourceRecords() as $resourceRecord) {
             $resourceRecord->validate();
         }
+
+        $this->validator->validate($this);
     }
 }

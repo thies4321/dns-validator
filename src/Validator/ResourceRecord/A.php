@@ -11,7 +11,9 @@ use DnsValidator\Exception\InvalidResourceRecordName;
 use DnsValidator\Exception\InvalidResourceRecordTtl;
 use DnsValidator\Exception\InvalidResourceRecordType;
 use DnsValidator\Exception\ResourceRecordTypeDoesNotMatch;
+
 use function filter_var;
+
 use const FILTER_FLAG_IPV4;
 use const FILTER_VALIDATE_IP;
 

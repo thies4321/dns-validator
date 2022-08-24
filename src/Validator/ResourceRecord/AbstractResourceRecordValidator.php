@@ -10,8 +10,10 @@ use DnsValidator\Exception\InvalidResourceRecordName;
 use DnsValidator\Exception\InvalidResourceRecordTtl;
 use DnsValidator\Exception\InvalidResourceRecordType;
 use DnsValidator\Exception\ResourceRecordTypeDoesNotMatch;
+
 use function filter_var;
 use function idn_to_ascii;
+
 use const FILTER_FLAG_HOSTNAME;
 use const FILTER_VALIDATE_DOMAIN;
 use const FILTER_VALIDATE_INT;
