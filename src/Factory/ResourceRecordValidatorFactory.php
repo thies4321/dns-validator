@@ -10,7 +10,7 @@ use DnsValidator\Validator\ResourceRecord\ResourceRecordValidatorInterface;
 use function class_exists;
 use function sprintf;
 
-class ResourceRecordValidatorFactory
+final class ResourceRecordValidatorFactory
 {
     public function create(string $type): ResourceRecordValidatorInterface
     {
