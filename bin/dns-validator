@@ -10,4 +10,6 @@ $factory = new \DnsValidator\Factory\ResourceRecordFactory();
 
 
 $record = $factory->create('blah.com', 60, 'NS', 'ns1.blah.com');
-$record->validate();
+
+$validator = new \DnsValidator\Validator\ResourceRecord\A();
+$validator->validate($record);

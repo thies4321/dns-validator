@@ -23,31 +23,13 @@ abstract class AbstractResourceRecordValidator implements ResourceRecordValidato
     /**
      * @throws InvalidResourceRecordName
      * @throws InvalidResourceRecordTtl
-     * @throws InvalidResourceRecordType
      * @throws ResourceRecordTypeDoesNotMatch
      */
     public function validate(ResourceRecord $resourceRecord): void
     {
-        $this->validateType($resourceRecord->getType());
         $this->validateName($resourceRecord->getName());
         $this->validateTtl($resourceRecord->getTtl());
-    }
-
-    /**
-     * @throws InvalidResourceRecordType
-     * @throws ResourceRecordTypeDoesNotMatch
-     */
-    protected function validateType(string $type): void
-    {
-        $resourceRecordType = ResourceRecordType::tryFrom($type);
-
-        if (! $resourceRecordType instanceof ResourceRecordType) {
-            throw InvalidResourceRecordType::forType($type);
-        }
-
-        if ($resourceRecordType !== static::TYPE) {
-            throw ResourceRecordTypeDoesNotMatch::forType($type, static::TYPE->value);
-        }
+        $this->validateType($resourceRecord->getType());
     }
 
     /**
@@ -67,6 +49,16 @@ abstract class AbstractResourceRecordValidator implements ResourceRecordValidato
     {
         if (! filter_var($ttl, FILTER_VALIDATE_INT, ['min_range' => 1, 'max_range' => 2147483647])) {
             throw InvalidResourceRecordTtl::forInteger($ttl);
+        }
+    }
+
+    /**
+     * @throws ResourceRecordTypeDoesNotMatch
+     */
+    protected function validateType(string $type): void
+    {
+        if ($type !== static::TYPE->name) {
+            throw ResourceRecordTypeDoesNotMatch::forType($type, static::TYPE->name);
         }
     }
 }

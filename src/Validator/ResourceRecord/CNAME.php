@@ -14,9 +14,9 @@ use DnsValidator\Exception\ResourceRecordTypeDoesNotMatch;
 use function filter_var;
 use function idn_to_ascii;
 
-final class NS extends AbstractResourceRecordValidator implements ResourceRecordValidatorInterface
+final class CNAME extends AbstractResourceRecordValidator implements ResourceRecordValidatorInterface
 {
-    public const TYPE = ResourceRecordType::NS;
+    public const TYPE = ResourceRecordType::CNAME;
 
     /**
      * @throws InvalidResourceRecordContent

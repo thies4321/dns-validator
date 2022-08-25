@@ -25,7 +25,6 @@ final class A extends AbstractResourceRecordValidator implements ResourceRecordV
      * @throws InvalidResourceRecordContent
      * @throws InvalidResourceRecordName
      * @throws InvalidResourceRecordTtl
-     * @throws InvalidResourceRecordType
      * @throws ResourceRecordTypeDoesNotMatch
      */
     public function validate(ResourceRecord $resourceRecord): void
