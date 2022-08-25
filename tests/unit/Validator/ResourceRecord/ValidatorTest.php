@@ -5,6 +5,7 @@ namespace DnsValidator\unit\Validator\ResourceRecord;
 use DnsValidator\Entity\ResourceRecord;
 use DnsValidator\Exception\InvalidResourceRecordName;
 use DnsValidator\Exception\InvalidResourceRecordTtl;
+use DnsValidator\Exception\ResourceRecord\InvalidName;
 use DnsValidator\Exception\ResourceRecordTypeDoesNotMatch;
 use DnsValidator\Validator\ResourceRecord\ResourceRecordValidatorInterface;
 use Exception;
@@ -47,7 +48,7 @@ abstract class ValidatorTest extends TestCase
     {
         $resourceRecord = $this->getTestResourceRecord('"', 60, static::RESOURCE_RECORD_TYPE->name, '127.0.0.1');
 
-        $this->expectException(InvalidResourceRecordName::class);
+        $this->expectException(InvalidName::class);
 
         $this->validator->validate($resourceRecord);
     }

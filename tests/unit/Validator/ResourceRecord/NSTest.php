@@ -6,7 +6,7 @@ namespace DnsValidator\unit\Validator\ResourceRecord;
 
 use DnsValidator\Entity\ResourceRecord;
 use DnsValidator\Enum\ResourceRecordType;
-use DnsValidator\Exception\InvalidResourceRecordContent;
+use DnsValidator\Exception\ResourceRecord\InvalidContent;
 use DnsValidator\Validator\ResourceRecord\NS;
 use Exception;
 
@@ -55,7 +55,7 @@ final class NSTest extends ValidatorTest
      */
     public function testInvalidContent(ResourceRecord $resourceRecord): void
     {
-        $this->expectException(InvalidResourceRecordContent::class);
+        $this->expectException(InvalidContent::class);
 
         $this->validator->validate($resourceRecord);
     }

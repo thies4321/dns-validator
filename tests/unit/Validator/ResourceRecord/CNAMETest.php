@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DnsValidator\unit\Validator\ResourceRecord;
 
 use DnsValidator\Entity\ResourceRecord;
 use DnsValidator\Enum\ResourceRecordType;
-use DnsValidator\Exception\InvalidResourceRecordContent;
+use DnsValidator\Exception\ResourceRecord\InvalidContent;
 use DnsValidator\Validator\ResourceRecord\CNAME;
-use DnsValidator\Validator\ResourceRecord\ResourceRecordValidatorInterface;
 
-class CNAMETest extends ValidatorTest
+final class CNAMETest extends ValidatorTest
 {
     protected const RESOURCE_RECORD_TYPE = ResourceRecordType::CNAME;
 
-    public function __construct(?string $name = null, array $data = [], int|string $dataName = '', ?ResourceRecordValidatorInterface $validator = null)
+    public function __construct(?string $name = null, array $data = [], int|string $dataName = '')
     {
         parent::__construct($name, $data, $dataName, new CNAME());
     }
@@ -50,7 +51,7 @@ class CNAMETest extends ValidatorTest
      */
     public function testInvalidContent(ResourceRecord $resourceRecord): void
     {
-        $this->expectException(InvalidResourceRecordContent::class);
+        $this->expectException(InvalidContent::class);
 
         $this->validator->validate($resourceRecord);
     }

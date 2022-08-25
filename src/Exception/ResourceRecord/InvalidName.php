@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DnsValidator\Exception;
+namespace DnsValidator\Exception\ResourceRecord;
 
 use Exception;
 
 use function sprintf;
 
-final class InvalidResourceRecordName extends Exception
+final class InvalidName extends Exception
 {
     public static function forHostname(string $hostname): self
     {

@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace DnsValidator\Validator\ResourceRecord;
 
 use DnsValidator\Entity\ResourceRecord;
-use DnsValidator\Enum\ResourceRecordType;
-use DnsValidator\Exception\InvalidResourceRecordName;
 use DnsValidator\Exception\InvalidResourceRecordTtl;
-use DnsValidator\Exception\InvalidResourceRecordType;
+use DnsValidator\Exception\ResourceRecord\InvalidName;
 use DnsValidator\Exception\ResourceRecordTypeDoesNotMatch;
 
 use function filter_var;
@@ -21,7 +19,7 @@ use const FILTER_VALIDATE_INT;
 abstract class AbstractResourceRecordValidator implements ResourceRecordValidatorInterface
 {
     /**
-     * @throws InvalidResourceRecordName
+     * @throws InvalidName
      * @throws InvalidResourceRecordTtl
      * @throws ResourceRecordTypeDoesNotMatch
      */
@@ -33,12 +31,12 @@ abstract class AbstractResourceRecordValidator implements ResourceRecordValidato
     }
 
     /**
-     * @throws InvalidResourceRecordName
+     * @throws InvalidName
      */
     protected function validateName(string $name): void
     {
         if (! filter_var(idn_to_ascii($name), FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME)) {
-            throw InvalidResourceRecordName::forHostname($name);
+            throw InvalidName::forHostname($name);
         }
     }
 

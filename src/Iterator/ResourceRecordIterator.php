@@ -8,7 +8,7 @@ use DnsValidator\Collection\ResourceRecordCollection;
 use DnsValidator\Entity\ResourceRecord;
 use Iterator;
 
-class ResourceRecordIterator implements Iterator
+final class ResourceRecordIterator implements Iterator
 {
     private ResourceRecordCollection $collection;
     private int $position = 0;

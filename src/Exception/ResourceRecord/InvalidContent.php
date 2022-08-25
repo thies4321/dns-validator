@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DnsValidator\Exception;
+namespace DnsValidator\Exception\ResourceRecord;
 
 use Exception;
 
 use function sprintf;
 
-final class InvalidResourceRecordContent extends Exception
+final class InvalidContent extends Exception
 {
     public static function forInternetAddress(string $internetAddress): self
     {
