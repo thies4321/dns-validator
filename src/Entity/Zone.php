@@ -8,7 +8,6 @@ use DnsValidator\Collection\ResourceRecordCollection;
 use DnsValidator\Validator\ZoneValidatorInterface;
 use Exception;
 
-use function array_map;
 use function iterator_to_array;
 
 final class Zone
@@ -39,11 +38,12 @@ final class Zone
      */
     public function getResourceRecords(): array
     {
-        return array_map(function (ResourceRecord $resourceRecord) {
-            return $resourceRecord;
-        }, iterator_to_array($this->resourceRecordCollection->getIterator()));
+        return iterator_to_array($this->resourceRecordCollection->getIterator());
     }
 
+    /**
+     * @throws Exception
+     */
     public function validate(): void
     {
         foreach ($this->getResourceRecords() as $resourceRecord) {

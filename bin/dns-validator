@@ -9,11 +9,5 @@ $factory = new \DnsValidator\Factory\ResourceRecordFactory();
 //$record->validate();
 
 
-$collection = new \DnsValidator\Collection\ResourceRecordCollection();
-$collection->addItem($factory->create('test.nl', 60, 'A', '127.0.0.1'));
-$collection->addItem($factory->create('test2.nl', 60, 'A', '127.0.0.1'));
-$collection->addItem($factory->create('test3.nl', 60, 'A', '127.0.0.1'));
-
-$zone = new \DnsValidator\Entity\Zone('test.nl', $collection);
-
-print_r($zone->validate());
+$record = $factory->create('blah.com', 60, 'NS', 'ns1.blah.com');
+$record->validate();

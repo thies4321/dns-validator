@@ -11,9 +11,9 @@ final class ZoneFactory
 {
     private ZoneValidatorFactory $validatorFactory;
 
-    public function __construct(ZoneValidatorFactory $validatorFactory)
+    public function __construct(?ZoneValidatorFactory $validatorFactory = null)
     {
-        $this->validatorFactory = $validatorFactory;
+        $this->validatorFactory = $validatorFactory ?? new ZoneValidatorFactory();
     }
 
     public function create($name, ResourceRecordCollection $resourceRecordCollection): Zone

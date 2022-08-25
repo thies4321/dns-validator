@@ -10,6 +10,6 @@ class ZoneValidator implements ZoneValidatorInterface
 {
     public function validate(Zone $zone): void
     {
-
+        echo $zone->getName();
     }
 }
