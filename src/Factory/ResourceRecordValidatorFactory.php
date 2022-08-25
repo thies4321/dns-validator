@@ -23,6 +23,6 @@ final class ResourceRecordValidatorFactory
             throw ValidatorDoesNotExist::forType($type);
         }
 
-        return new $class;
+        return new $class();
     }
 }

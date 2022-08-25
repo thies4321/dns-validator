@@ -27,6 +27,5 @@ final class DnsValidatorService
 
     public function validateZone(string $name, array $resourceRecordData): void
     {
-
     }
 }
