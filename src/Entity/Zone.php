@@ -13,6 +13,7 @@ use function iterator_to_array;
 final class Zone
 {
     private string $name;
+    private int $ttl;
     private ResourceRecordCollection $resourceRecordCollection;
     private ZoneValidatorInterface $validator;
 

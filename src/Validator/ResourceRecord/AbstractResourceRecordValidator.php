@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace DnsValidator\Validator\ResourceRecord;
 
 use DnsValidator\Entity\ResourceRecord;
-use DnsValidator\Exception\InvalidResourceRecordTtl;
 use DnsValidator\Exception\ResourceRecord\InvalidName;
-use DnsValidator\Exception\ResourceRecordTypeDoesNotMatch;
+use DnsValidator\Exception\ResourceRecord\InvalidTtl;
+use DnsValidator\Exception\ResourceRecord\InvalidType;
 
 use function filter_var;
 use function idn_to_ascii;
@@ -20,8 +20,8 @@ abstract class AbstractResourceRecordValidator implements ResourceRecordValidato
 {
     /**
      * @throws InvalidName
-     * @throws InvalidResourceRecordTtl
-     * @throws ResourceRecordTypeDoesNotMatch
+     * @throws InvalidTtl
+     * @throws InvalidType
      */
     public function validate(ResourceRecord $resourceRecord): void
     {
@@ -41,22 +41,22 @@ abstract class AbstractResourceRecordValidator implements ResourceRecordValidato
     }
 
     /**
-     * @throws InvalidResourceRecordTtl
+     * @throws InvalidTtl
      */
     protected function validateTtl(int $ttl): void
     {
         if (! filter_var($ttl, FILTER_VALIDATE_INT, ['min_range' => 1, 'max_range' => 2147483647])) {
-            throw InvalidResourceRecordTtl::forInteger($ttl);
+            throw InvalidTtl::forInteger($ttl);
         }
     }
 
     /**
-     * @throws ResourceRecordTypeDoesNotMatch
+     * @throws InvalidType
      */
     protected function validateType(string $type): void
     {
         if ($type !== static::TYPE->name) {
-            throw ResourceRecordTypeDoesNotMatch::forType($type, static::TYPE->name);
+            throw InvalidType::forUnexpected(static::TYPE->name, $type);
         }
     }
 }

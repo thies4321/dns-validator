@@ -9,7 +9,7 @@ $factory = new \DnsValidator\Factory\ResourceRecordFactory();
 //$record->validate();
 
 
-$record = $factory->create('blah.com', 60, 'NS', 'ns1.blah.com');
+$record = $factory->create('blah.com', 60, 'SOA', 'ns.icann.org. john\.doe.example.com 2020080302 7200 7200 1209600 3600');
 
-$validator = new \DnsValidator\Validator\ResourceRecord\A();
+$validator = new \DnsValidator\Validator\ResourceRecord\SOA();
 $validator->validate($record);

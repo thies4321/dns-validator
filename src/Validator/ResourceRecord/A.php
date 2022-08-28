@@ -6,10 +6,10 @@ namespace DnsValidator\Validator\ResourceRecord;
 
 use DnsValidator\Entity\ResourceRecord;
 use DnsValidator\Enum\ResourceRecordType;
-use DnsValidator\Exception\InvalidResourceRecordTtl;
 use DnsValidator\Exception\ResourceRecord\InvalidContent;
 use DnsValidator\Exception\ResourceRecord\InvalidName;
-use DnsValidator\Exception\ResourceRecordTypeDoesNotMatch;
+use DnsValidator\Exception\ResourceRecord\InvalidTtl;
+use DnsValidator\Exception\ResourceRecord\InvalidType;
 
 use function filter_var;
 
@@ -22,9 +22,9 @@ final class A extends AbstractResourceRecordValidator implements ResourceRecordV
 
     /**
      * @throws InvalidContent
-     * @throws InvalidResourceRecordTtl
-     * @throws ResourceRecordTypeDoesNotMatch
      * @throws InvalidName
+     * @throws InvalidTtl
+     * @throws InvalidType
      */
     public function validate(ResourceRecord $resourceRecord): void
     {
