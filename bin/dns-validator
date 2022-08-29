@@ -9,7 +9,7 @@ $factory = new \DnsValidator\Factory\ResourceRecordFactory();
 //$record->validate();
 
 
-$record = $factory->create('blah.com', 60, 'PTR', '');
+$record = $factory->create('blah.com', 60, 'HINFO', 'CDC-170/750 UNIX');
 
-$validator = new \DnsValidator\Validator\ResourceRecord\SOA();
+$validator = new \DnsValidator\Validator\ResourceRecord\HINFO();
 $validator->validate($record);
