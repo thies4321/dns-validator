@@ -16,6 +16,6 @@ final class InvalidHostmasterField extends Exception
 
     public static function forContent(string $hostmaster): self
     {
-        return new self(sprintf('Hostmaster [%s] is not a valid email', $hostmaster));
+        return new self(sprintf('Hostmaster [%s] is not a valid hostname', $hostmaster));
     }
 }
