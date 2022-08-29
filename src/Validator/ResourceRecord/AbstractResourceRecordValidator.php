@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DnsValidator\Validator\ResourceRecord;
 
 use DnsValidator\Entity\ResourceRecord;
+use DnsValidator\Exception\ResourceRecord\InvalidContent;
 use DnsValidator\Exception\ResourceRecord\InvalidName;
 use DnsValidator\Exception\ResourceRecord\InvalidTtl;
 use DnsValidator\Exception\ResourceRecord\InvalidType;
@@ -12,6 +13,7 @@ use DnsValidator\Exception\ResourceRecord\InvalidType;
 use function filter_var;
 use function idn_to_ascii;
 
+use function strlen;
 use const FILTER_FLAG_HOSTNAME;
 use const FILTER_VALIDATE_DOMAIN;
 use const FILTER_VALIDATE_INT;
@@ -19,6 +21,7 @@ use const FILTER_VALIDATE_INT;
 abstract class AbstractResourceRecordValidator implements ResourceRecordValidatorInterface
 {
     /**
+     * @throws InvalidContent
      * @throws InvalidName
      * @throws InvalidTtl
      * @throws InvalidType
@@ -28,6 +31,7 @@ abstract class AbstractResourceRecordValidator implements ResourceRecordValidato
         $this->validateName($resourceRecord->getName());
         $this->validateTtl($resourceRecord->getTtl());
         $this->validateType($resourceRecord->getType());
+        $this->validateContent($resourceRecord->getContent());
     }
 
     /**
@@ -57,6 +61,16 @@ abstract class AbstractResourceRecordValidator implements ResourceRecordValidato
     {
         if ($type !== static::TYPE->name) {
             throw InvalidType::forUnexpected(static::TYPE->name, $type);
+        }
+    }
+
+    /**
+     * @throws InvalidContent
+     */
+    protected function validateContent(string $content): void
+    {
+        if (strlen($content) > 255) {
+            throw InvalidContent::forTooLong($content);
         }
     }
 }

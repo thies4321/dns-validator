@@ -9,6 +9,7 @@ use DnsValidator\Entity\ResourceRecord;
 use DnsValidator\Enum\ResourceRecordType;
 use DnsValidator\Exception\ResourceRecord\HINFO\InvalidCpuField;
 use DnsValidator\Exception\ResourceRecord\HINFO\InvalidOsField;
+use DnsValidator\Exception\ResourceRecord\InvalidContent;
 use DnsValidator\Exception\ResourceRecord\InvalidName;
 use DnsValidator\Exception\ResourceRecord\InvalidTtl;
 use DnsValidator\Exception\ResourceRecord\InvalidType;
@@ -25,10 +26,11 @@ final class HINFO extends AbstractResourceRecordValidator implements ResourceRec
 
     /**
      * @throws InvalidCpuField
-     * @throws InvalidOsField
      * @throws InvalidName
+     * @throws InvalidOsField
      * @throws InvalidTtl
      * @throws InvalidType
+     * @throws InvalidContent
      */
     public function validate(ResourceRecord $resourceRecord): void
     {

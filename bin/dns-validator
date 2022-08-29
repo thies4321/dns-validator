@@ -9,7 +9,7 @@ $factory = new \DnsValidator\Factory\ResourceRecordFactory();
 //$record->validate();
 
 
-$record = $factory->create('blah.com', 60, 'MX', '1 example.com');
+$record = $factory->create('blah.com', 60, 'TXT', 'a');
 
-$validator = new \DnsValidator\Validator\ResourceRecord\MX();
+$validator = new \DnsValidator\Validator\ResourceRecord\TXT();
 $validator->validate($record);

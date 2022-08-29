@@ -6,6 +6,7 @@ namespace DnsValidator\Validator\ResourceRecord;
 
 use DnsValidator\Entity\ResourceRecord;
 use DnsValidator\Enum\ResourceRecordType;
+use DnsValidator\Exception\ResourceRecord\InvalidContent;
 use DnsValidator\Exception\ResourceRecord\InvalidName;
 use DnsValidator\Exception\ResourceRecord\InvalidTtl;
 use DnsValidator\Exception\ResourceRecord\InvalidType;
@@ -48,13 +49,14 @@ final class SOA extends AbstractResourceRecordValidator implements ResourceRecor
      * @throws InvalidExpireField
      * @throws InvalidHostmasterField
      * @throws InvalidMinimumField
+     * @throws InvalidName
      * @throws InvalidPrimaryField
      * @throws InvalidRefreshField
      * @throws InvalidRetryField
      * @throws InvalidSerialField
-     * @throws InvalidName
      * @throws InvalidTtl
      * @throws InvalidType
+     * @throws InvalidContent
      */
     public function validate(ResourceRecord $resourceRecord): void
     {

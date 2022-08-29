@@ -6,6 +6,7 @@ namespace DnsValidator\Validator\ResourceRecord;
 
 use DnsValidator\Entity\ResourceRecord;
 use DnsValidator\Enum\ResourceRecordType;
+use DnsValidator\Exception\ResourceRecord\InvalidContent;
 use DnsValidator\Exception\ResourceRecord\InvalidName;
 use DnsValidator\Exception\ResourceRecord\InvalidTtl;
 use DnsValidator\Exception\ResourceRecord\InvalidType;
@@ -28,10 +29,11 @@ final class MX extends AbstractResourceRecordValidator implements ResourceRecord
 
     /**
      * @throws InvalidExchangeField
-     * @throws InvalidPreferenceField
      * @throws InvalidName
+     * @throws InvalidPreferenceField
      * @throws InvalidTtl
      * @throws InvalidType
+     * @throws InvalidContent
      */
     public function validate(ResourceRecord $resourceRecord): void
     {

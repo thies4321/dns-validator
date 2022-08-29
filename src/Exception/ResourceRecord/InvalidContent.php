@@ -19,4 +19,9 @@ final class InvalidContent extends Exception
     {
         return new self(sprintf('[%s] is not a valid IDN domain name', $domain));
     }
+
+    public static function forTooLong(string $content): self
+    {
+        return new self(sprintf('Content [%s] should not be more than 255 characters', $content));
+    }
 }
